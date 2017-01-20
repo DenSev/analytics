@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="mySuite" verbose="1">
+    <test name="tests">
+        <groups>
+            <run>
+                <exclude name="skip"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.lumen*"/>
+        </packages>
+    </test>
+</suite>
