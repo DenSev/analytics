@@ -41,13 +41,13 @@ class App {
             executionService.submit {
                 var bulk = elasticClient!!.prepareBulk()
                 for(i in 1..16){
-                    val doc = Jsoup.connect("https://www.fanfiction.net/s/12111462/$i/Naruto-Uchiha-Chronicles-Redux").get()
+                    val doc = Jsoup.connect("").get()
                     val element = doc.select("#storytext")
                     val testData = TestClass.Builder()
                             .id(r.nextInt())
                             .test(element.html())
                             .build()
-                    val indexRequest = elasticClient!!.prepareIndex("test-index", "test-type")
+                    val indexRequest = elasticClient.prepareIndex("test-index", "test-type")
                             .setSource(mapper!!.writeValueAsString(testData))
                     bulk.add(indexRequest)
                 }
