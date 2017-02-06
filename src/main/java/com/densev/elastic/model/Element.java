@@ -1,4 +1,4 @@
-package com.densev.elastic.dto;
+package com.densev.elastic.model;
 
 /**
  * Created by Dzianis_Sevastseyenk on 02/01/2017.

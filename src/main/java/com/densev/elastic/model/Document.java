@@ -1,4 +1,4 @@
-package com.densev.elastic.dto;
+package com.densev.elastic.model;
 
 import java.util.HashMap;
 

@@ -24,7 +24,7 @@ repositories {
 
 
 ext {
-    elasticsearchVersion = '5.1.2'
+    elasticsearchVersion = '5.2.0'
     commonsLangVersion = '3.0'
     commonsMathVersion = '3.2'
     googleGuavaVersion = '20.0'

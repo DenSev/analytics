@@ -1,6 +1,6 @@
 package com.densev.elastic.app
 
-import com.densev.elastic.dto.TestClass
+import com.densev.elastic.model.TestClass
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.math3.random.MersenneTwister
