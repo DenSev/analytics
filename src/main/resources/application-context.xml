@@ -16,4 +16,7 @@
     <bean id="connectionFactory" class="com.densev.elastic.repository.ConnectionFactory"/>
     <bean id="elasticClient" factory-bean="connectionFactory" factory-method="getElasticClient"/>
 
+    <bean id="jsonFactoryProvider" class="com.densev.elastic.utility.JsonFactoryProvider"/>
+    <bean id="jsonFactory" factory-bean="jsonFactoryProvider" factory-method="getFactory"/>
+
 </beans>

@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import javax.json.Json;
+import javax.json.JsonBuilderFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

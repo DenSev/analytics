@@ -5,8 +5,29 @@ package com.densev.elastic.model;
  */
 public enum ElasticType {
 
-    INT,
-    DOUBLE,
-    TEXT,
-    KEYWORD
+
+    //numeric
+    BYTE("byte"),
+    DOUBLE("double"),
+    FLOAT("float"),
+    INT("integer"),
+    LONG("long"),
+    SHORT("short"),
+    //string
+    TEXT("text"),
+    KEYWORD("keyword"),
+    //other
+    DATE("date"),
+    BOOLEAN("boolean");
+
+
+    private String esType;
+
+    ElasticType(String esType){
+        this.esType = esType;
+    }
+
+    public String getEsType() {
+        return esType;
+    }
 }

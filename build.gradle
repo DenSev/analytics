@@ -32,7 +32,7 @@ ext {
     testNgVersion = '6.9.13.6'
     mockitoVersion = '1.10.19'
     jacksonVersion = '2.7.6'
-
+    jsonApiVersion = '1.0'
 }
 
 dependencies {
@@ -53,7 +53,8 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
-
+    compile "javax.json:javax.json-api:$jsonApiVersion"
+    compile "org.glassfish:javax.json:1.0.4"
 }
 
 allprojects {
@@ -62,6 +63,8 @@ allprojects {
     dependencies {
         testCompile "org.testng:testng:$testNgVersion"
         testCompile "org.mockito:mockito-all:$mockitoVersion"
+        testCompile "org.springframework:spring-test:$springVersion"
+
     }
 
     test {
