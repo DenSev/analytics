@@ -18,7 +18,8 @@ public enum ElasticType {
     KEYWORD("keyword"),
     //other
     DATE("date"),
-    BOOLEAN("boolean");
+    BOOLEAN("boolean"),
+    BLOB("blob");
 
 
     private String esType;
