@@ -16,7 +16,7 @@ import javax.json.JsonObjectBuilder;
 @Component
 public class ElementConverter {
 
-    private final static Logger logger = LoggerFactory.getLogger(ElementConverter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ElementConverter.class);
 
     @Autowired
     JsonBuilderFactory jsonFactory;
@@ -34,7 +34,7 @@ public class ElementConverter {
             .add(element.getElementName(), fieldSettings)
             .build();
 
-        logger.info(jsonFactory.getConfigInUse().toString());
+        LOG.info(jsonFactory.getConfigInUse().toString());
 
 
         return field.toString();

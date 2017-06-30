@@ -10,6 +10,7 @@ public class Element {
     private ElasticType elementType;
     private boolean isIndexed = true;
     private boolean isAnalyzed = false;
+    private boolean hasDocValues = true;
 
     public String getElementName() {
         return elementName;
