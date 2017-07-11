@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,9 +37,9 @@ public class ScriptEvaluator {
     private static final Logger LOG = LoggerFactory.getLogger(ScriptEvaluator.class);
 
 
-
     private final ScriptEngine engine;
-    private String baseScriptFolder = "D://test";
+    private String baseScriptFolder = "scripts";
+    private String scannedFileExtension = ".groovy";
     private String encoding = "UTF-8";
 
     private Map<String, TimestampedScript> scriptCache;
@@ -59,6 +60,7 @@ public class ScriptEvaluator {
 
         try (Stream<Path> paths = Files.walk(Paths.get(baseScriptFolder))) {
             return paths.filter(Files::isRegularFile)
+                .filter(path -> !path.endsWith(scannedFileExtension))
                 .map(this::loadScript)
                 .map(pair -> {
                     try {
@@ -107,7 +109,11 @@ public class ScriptEvaluator {
             .collect(Collectors.toMap(TimestampedScript::getScriptName, timestampedScript -> timestampedScript));
     }
 
-    public Object eval(String scriptName, ScriptContext context) throws ScriptException {
+    public Object eval(String scriptName, ScriptContext context) throws ScriptException, FileNotFoundException {
+        if (!this.scriptCache.containsKey(scriptName)) {
+            throw new FileNotFoundException("Script with name " + scriptName + " wasn't found in script cache. " +
+                "Please check if you are referencing correct script.");
+        }
         return this.scriptCache.get(scriptName).eval(context);
     }
 
@@ -129,5 +135,13 @@ public class ScriptEvaluator {
 
     public void setEncoding(String encoding) {
         this.encoding = encoding;
+    }
+
+    public String getScannedFileExtension() {
+        return scannedFileExtension;
+    }
+
+    public void setScannedFileExtension(String scannedFileExtension) {
+        this.scannedFileExtension = scannedFileExtension;
     }
 }
