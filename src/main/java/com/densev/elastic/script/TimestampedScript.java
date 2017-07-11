@@ -13,10 +13,12 @@ import javax.script.ScriptException;
  */
 public class TimestampedScript extends CompiledScript {
 
+    private String scriptName;
     private CompiledScript script;
     private DateTime timestamp;
 
-    public TimestampedScript(CompiledScript script, DateTime timestamp) {
+    public TimestampedScript(String scriptName, CompiledScript script, DateTime timestamp) {
+        this.scriptName = scriptName;
         this.script = script;
         this.timestamp = timestamp;
     }
@@ -27,6 +29,14 @@ public class TimestampedScript extends CompiledScript {
 
     public void setTimestamp(DateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getScriptName() {
+        return scriptName;
+    }
+
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
     }
 
     @Override
