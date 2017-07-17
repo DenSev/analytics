@@ -62,6 +62,7 @@ dependencies {
 
 allprojects {
     apply plugin: 'java'
+    apply from: "$rootDir/code-quality.gradle"
 
     dependencies {
         testCompile "org.testng:testng:$testNgVersion"
