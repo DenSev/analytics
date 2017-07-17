@@ -18,7 +18,7 @@ public class SelectorTest {
 
     private final static Logger logger = LoggerFactory.getLogger(SelectorTest.class);
 
-    @Test
+    @Test(enabled = false)
     public void test() throws IOException {
         Document doc = Jsoup.connect("http://www.pixiv.net/search.php?word=2B&s_mode=s_tag_full&order=date_d&p=110").get();
         Elements elements = doc.select(".work._work");

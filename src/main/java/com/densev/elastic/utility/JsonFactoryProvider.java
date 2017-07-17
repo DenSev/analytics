@@ -13,7 +13,7 @@ public class JsonFactoryProvider {
 
     private JsonBuilderFactory factory;
 
-    public JsonFactoryProvider(){
+    public JsonFactoryProvider() {
         this.factory = Json.createBuilderFactory(null);
     }
 

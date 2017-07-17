@@ -2,20 +2,16 @@ package com.densev.elastic.app
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.apache.commons.io.FileUtils
 import org.apache.commons.math3.random.MersenneTwister
 import org.elasticsearch.client.Client
-import org.elasticsearch.client.transport.NoNodeAvailableException
 import org.jsoup.Jsoup
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.support.ClassPathXmlApplicationContext
 import org.springframework.stereotype.Component
 import java.io.File
+import java.io.FileOutputStream
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.io.FileOutputStream
-
 
 
 /**
@@ -32,60 +28,55 @@ class App {
 
     @Throws(JsonProcessingException::class)
     fun run() {
-        try {
-            val r = MersenneTwister()
+        val r = MersenneTwister()
 
-            var executionService: ExecutorService = Executors.newFixedThreadPool(2)
+        var executionService: ExecutorService = Executors.newFixedThreadPool(2)
 
-            //val doc = Jsoup.connect("http://www.pixiv.net/search.php?word=2B&s_mode=s_tag_full&order=date_d&p=110").get()
-            //val elements = doc.select(".work._work")
-            /*for(e in elements){
-                val workRef = e.attr("href")
-                val url = "http://www.pixiv.net/$workRef"
-                logger.info(url)
-                val work = Jsoup.connect(url).get()
-                val workImage = work.select(".works_display img")
-                logger.info(workImage.toString())
-            }*/
+        //val doc = Jsoup.connect("http://www.pixiv.net/search.php?word=2B&s_mode=s_tag_full&order=date_d&p=110").get()
+        //val elements = doc.select(".work._work")
+        /*for(e in elements){
+            val workRef = e.attr("href")
+            val url = "http://www.pixiv.net/$workRef"
+            logger.info(url)
+            val work = Jsoup.connect(url).get()
+            val workImage = work.select(".works_display img")
+            logger.info(workImage.toString())
+        }*/
 
-            val work = Jsoup.connect("").get()
+        val work = Jsoup.connect("").get()
 
-            val img = work.select("._work img")
-            val imgUrl = img.attr("src")
-            val splitparts = imgUrl.split("/")
+        val img = work.select("._work img")
+        val imgUrl = img.attr("src")
+        val splitparts = imgUrl.split("/")
 
-            val imgFilename = splitparts[splitparts.size-1]
-            var index = splitparts.indexOf("img")
-            var newUrl = splitparts[0] + "//" + splitparts[2] + "/img-original/img"
-            while (index < splitparts.size-2){
-                index++
-                newUrl += "/" + splitparts[index]
-            }
-            val t1 = imgFilename.split(".")
-            val type = t1[1]
-            val nameParts = t1[0].split("_")
-            val newFileName = nameParts[0] + "_" +nameParts[1] + "." + type
-            newUrl += "/" + newFileName
-            logger.info(newUrl)
-            logger.info(splitparts.toString())
+        val imgFilename = splitparts[splitparts.size - 1]
+        var index = splitparts.indexOf("img")
+        var newUrl = splitparts[0] + "//" + splitparts[2] + "/img-original/img"
+        while (index < splitparts.size - 2) {
+            index++
+            newUrl += "/" + splitparts[index]
+        }
+        val t1 = imgFilename.split(".")
+        val type = t1[1]
+        val nameParts = t1[0].split("_")
+        val newFileName = nameParts[0] + "_" + nameParts[1] + "." + type
+        newUrl += "/" + newFileName
+        logger.info(newUrl)
+        logger.info(splitparts.toString())
 
-            val image = Jsoup.connect(newUrl).ignoreContentType(true).execute()
+        val image = Jsoup.connect(newUrl).ignoreContentType(true).execute()
 
-            var f : File = File("D://test.$type")
-            val out = FileOutputStream(f)
-            out.write(image.bodyAsBytes())
-            // resultImageResponse.body() is where the image's contents are.
-            out.close()
+        var f: File = File("D://test.$type")
+        val out = FileOutputStream(f)
+        out.write(image.bodyAsBytes())
+        // resultImageResponse.body() is where the image's contents are.
+        out.close()
 
 //http://i2.pixiv.net/img-original/img
-            //logger.info(img.toString())
+        //logger.info(img.toString())
 
-            /**/
+        /**/
 
-
-        } catch (e: NoNodeAvailableException) {
-            logger.error("No node available: ", e)
-        }
 
     }
 

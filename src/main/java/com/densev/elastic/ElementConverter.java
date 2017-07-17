@@ -27,7 +27,7 @@ public class ElementConverter {
             .add("type", element.getElementType().getEsType());
         if (!element.isAnalyzed() && !element.isIndexed()) {
             fieldSettings.add("index", "no");
-        } else if(element.isIndexed()){
+        } else if (element.isIndexed()) {
             fieldSettings.add("index", "not_analyzed");
         }
         JsonObject field = jsonFactory.createObjectBuilder()

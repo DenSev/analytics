@@ -24,7 +24,7 @@ public enum ElasticType {
 
     private String esType;
 
-    ElasticType(String esType){
+    ElasticType(String esType) {
         this.esType = esType;
     }
 

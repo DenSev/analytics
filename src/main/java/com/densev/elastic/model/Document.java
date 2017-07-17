@@ -2,6 +2,7 @@ package com.densev.elastic.model;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -11,7 +12,7 @@ import static com.google.common.collect.Lists.newArrayList;
 public class Document {
 
     private String id;
-    private HashMap<String, Element> elementsMap;
+    private Map<String, Element> elementsMap;
 
     public Document() {
         elementsMap = new HashMap<>();
@@ -29,7 +30,7 @@ public class Document {
         return newArrayList(elementsMap.values());
     }
 
-    public void putElement(Element e){
+    public void putElement(Element e) {
         elementsMap.put(e.getElementName(), e);
     }
 

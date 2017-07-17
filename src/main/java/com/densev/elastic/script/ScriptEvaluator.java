@@ -56,7 +56,7 @@ public class ScriptEvaluator {
     }
 
 
-    public Map<String, Pair<String, DateTime>> loadScripts() {
+    protected Map<String, Pair<String, DateTime>> loadScripts() {
 
         try (Stream<Path> paths = Files.walk(Paths.get(baseScriptFolder))) {
             return paths.filter(Files::isRegularFile)
@@ -80,12 +80,12 @@ public class ScriptEvaluator {
         }
     }
 
-    public Pair<File, DateTime> loadScript(Path path) {
+    protected Pair<File, DateTime> loadScript(Path path) {
         File script = path.toFile();
         return Pair.of(script, new DateTime(script.lastModified()));
     }
 
-    public void precompileScripts() {
+    protected void precompileScripts() {
         Map<String, Pair<String, DateTime>> timestampedScripts = loadScripts();
         scriptCache = timestampedScripts
             .entrySet()
