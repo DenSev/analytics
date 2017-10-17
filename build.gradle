@@ -2,7 +2,7 @@ group 'com.densev.elastic'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlinVersion = '1.0.5'
+    ext.kotlinVersion = '1.1.4'
 
     repositories {
         mavenCentral()
@@ -24,38 +24,54 @@ repositories {
 
 
 ext {
-    elasticsearchVersion = '5.2.0'
+    elasticsearchVersion = '5.6.2'
     commonsLangVersion = '3.0'
     commonsMathVersion = '3.2'
     googleGuavaVersion = '20.0'
-    springVersion = "4.3.3.RELEASE"
+    springVersion = "4.3.12.RELEASE"
     testNgVersion = '6.9.13.6'
     mockitoVersion = '1.10.19'
     jacksonVersion = '2.7.6'
     jsonApiVersion = '1.0'
+    aspectJVersion = '1.8.10'
+    jclSlf4jVersion = '1.7.12'
 }
 
 dependencies {
-    compile group: 'commons-io', name: 'commons-io', version: '2.4'
-    compile "org.jsoup:jsoup:1.8.3"
+    //logging
     compile "ch.qos.logback:logback-classic:1.1.8"
+    compile "org.slf4j:jcl-over-slf4j:${jclSlf4jVersion}"
     compile "org.apache.logging.log4j:log4j-api:2.7"
     compile "org.apache.logging.log4j:log4j-core:2.7"
+    //elasticsearch
     compile "org.elasticsearch:elasticsearch:$elasticsearchVersion"
-    compile "org.elasticsearch.client:transport:$elasticsearchVersion"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.elasticsearch.client:elasticsearch-rest-client:$elasticsearchVersion"
+    compile "org.elasticsearch.client:elasticsearch-rest-client-sniffer:$elasticsearchVersion"
+    compile "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
+    //spring and aop
     compile "org.springframework:spring-core:$springVersion"
-    compile "org.springframework:spring-context:$springVersion"
+    compile("org.springframework:spring-context:$springVersion") {
+        exclude group: "commons-logging"
+    }
+    compile group: 'org.springframework', name: 'spring-aop', version: '4.3.12.RELEASE'
+    implementation "org.aspectj:aspectjweaver:$aspectJVersion"
+    //util stuff
     compile "com.google.guava:guava:$googleGuavaVersion"
     compile "org.apache.commons:commons-lang3:$commonsLangVersion"
     compile "org.apache.commons:commons-math3:$commonsMathVersion"
     compile "org.apache.commons:commons-collections4:4.1"
+    compile "commons-io:commons-io:2.4"
+    //jackson
     compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
+    //misc
     compile "javax.json:javax.json-api:$jsonApiVersion"
     compile "org.glassfish:javax.json:1.0.4"
+    compile "org.jsoup:jsoup:1.8.3"
+    //langs
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.12'
 
 }

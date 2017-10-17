@@ -7,7 +7,6 @@ import org.elasticsearch.client.Client
 import org.jsoup.Jsoup
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
 import java.io.File
 import java.io.FileOutputStream
 import java.util.concurrent.ExecutorService
@@ -17,7 +16,6 @@ import java.util.concurrent.Executors
 /**
  * Created on 20.01.2017.
  */
-@Component
 class App {
     internal var logger = LoggerFactory.getLogger(App::class.java)
 
@@ -84,7 +82,8 @@ class App {
         internal val contextLocation = "classpath:application-context.xml"
 
         @Throws(JsonProcessingException::class)
-        @JvmStatic fun main(args: Array<String>) {
+        @JvmStatic
+        fun main(args: Array<String>) {
             /*val context = ClassPathXmlApplicationContext(contextLocation)
             val app = context.getBean(App::class.java)
             app.run()*/
