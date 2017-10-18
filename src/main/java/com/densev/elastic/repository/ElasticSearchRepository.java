@@ -1,8 +1,6 @@
 package com.densev.elastic.repository;
 
-import com.densev.elastic.logging.annotations.LogExecutionTime;
-import com.densev.elastic.logging.annotations.LogParams;
-import com.densev.elastic.logging.annotations.LogResult;
+import com.densev.elastic.logging.annotations.LogAll;
 import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -22,9 +20,7 @@ public class ElasticSearchRepository {
     @Autowired
     private RestHighLevelClient client;
 
-    @LogParams
-    @LogResult
-    @LogExecutionTime
+    @LogAll
     public SearchResponse search(SearchSourceBuilder searchSourceBuilder, String index) throws IOException {
         SearchResponse searchResponse = client.search(new SearchRequest(new String[]{index}, searchSourceBuilder));
         return searchResponse;
