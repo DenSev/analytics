@@ -20,8 +20,8 @@ import javax.annotation.PreDestroy;
 public class ConnectionFactory implements ClientProvider {
     private static final Logger LOG = LoggerFactory.getLogger(ConnectionFactory.class);
 
-    private final String esAddress = "127.0.0.1";
-    private final int esTransportPort = 9200;
+    private final String esAddress = "es-inventory-2.qa-21.vip.aws2";
+    private final int esTransportPort = 80;
     private RestClient basicClient;
     private RestHighLevelClient client;
     private Sniffer sniffer;
