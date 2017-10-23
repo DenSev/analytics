@@ -1,12 +1,5 @@
 package com.densev.elastic.app
 
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.apache.commons.math3.random.MersenneTwister
-import org.elasticsearch.client.Client
-import org.jsoup.Jsoup
-import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import java.io.File
 import java.io.FileOutputStream
 import java.util.concurrent.ExecutorService

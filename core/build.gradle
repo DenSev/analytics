@@ -1,0 +1,39 @@
+
+dependencies {
+    //logging
+    compile "ch.qos.logback:logback-classic:1.1.8"
+    compile "org.slf4j:jcl-over-slf4j:${jclSlf4jVersion}"
+    compile "org.apache.logging.log4j:log4j-api:2.7"
+    compile "org.apache.logging.log4j:log4j-core:2.7"
+    //elasticsearch
+    compile "org.elasticsearch:elasticsearch:$elasticsearchVersion"
+    compile "org.elasticsearch.client:elasticsearch-rest-client:$elasticsearchVersion"
+    compile "org.elasticsearch.client:elasticsearch-rest-client-sniffer:$elasticsearchVersion"
+    compile "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearchVersion"
+    //spring and aop
+    compile "org.springframework:spring-core:$springVersion"
+    compile("org.springframework:spring-context:$springVersion") {
+        exclude group: "commons-logging"
+    }
+    compile group: 'org.springframework', name: 'spring-aop', version: '4.3.12.RELEASE'
+    implementation "org.aspectj:aspectjweaver:$aspectJVersion"
+    //util stuff
+    compile "com.google.guava:guava:$googleGuavaVersion"
+    compile "org.apache.commons:commons-lang3:$commonsLangVersion"
+    compile "org.apache.commons:commons-math3:$commonsMathVersion"
+    compile "org.apache.commons:commons-collections4:4.1"
+    compile "commons-io:commons-io:2.4"
+    //jackson
+    compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion"
+    //misc
+    compile "javax.json:javax.json-api:$jsonApiVersion"
+    compile "org.glassfish:javax.json:1.0.4"
+    compile "org.jsoup:jsoup:1.8.3"
+    //langs
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.12'
+
+}

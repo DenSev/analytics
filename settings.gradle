@@ -1,2 +1,3 @@
 rootProject.name = 'web-parser'
 
+include 'core'
