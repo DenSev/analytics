@@ -33,17 +33,13 @@ public class Application {
         Set<String> nonUniqueIds = new HashSet<>();
 
         SearchSourceBuilder searchRequest = new SearchSourceBuilder().query(QueryBuilders.matchAllQuery());
-
-
         SearchResponse response = repository.search(searchRequest, "search-index-alias");
-
         do {
             for (SearchHit hit : response.getHits().getHits()) {
                 if (!ids.add(hit.getId())) {
                     nonUniqueIds.add(hit.getId());
                 }
             }
-
             response = repository.scroll(response.getScrollId());
         } while (response.getHits().getHits().length != 0);
 

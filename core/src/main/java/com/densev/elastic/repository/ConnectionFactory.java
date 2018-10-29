@@ -20,15 +20,25 @@ import javax.annotation.PreDestroy;
 public class ConnectionFactory implements ClientProvider {
     private static final Logger LOG = LoggerFactory.getLogger(ConnectionFactory.class);
 
-    private final String esAddress = "es-inventory-2.qa-21.vip.aws2";
-    private final int esTransportPort = 80;
+    private final String address;
+    private final int connectionPort;
     private RestClient basicClient;
     private RestHighLevelClient client;
     private Sniffer sniffer;
 
+    public ConnectionFactory() {
+        this.address = "es-inventory-2.qa-21.vip.aws2";
+        this.connectionPort = 80;
+    }
+
+    public ConnectionFactory(final String address, final int connectionPort) {
+        this.address = address;
+        this.connectionPort = connectionPort;
+    }
+
     @PostConstruct
     private void init() {
-        RestClientBuilder builder = RestClient.builder(new HttpHost(esAddress, esTransportPort, "http"));
+        RestClientBuilder builder = RestClient.builder(new HttpHost(address, connectionPort, "https"));
         this.basicClient = builder.build();
         this.sniffer = Sniffer.builder(basicClient).build();
         this.client = new RestHighLevelClient(this.basicClient);
